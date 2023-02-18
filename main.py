@@ -117,18 +117,18 @@ def spin(balance):
     slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
     print_slot_machine(slots)
     winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
-    print(f'Você ganhou ${winnings}')
+    print(f'Você ganhou \033[31${winnings}\033[m')
     print(f'Você ganhou em:', *winning_lines)
     return winnings - total_bet
 
 def main():
     balance = deposit()
     while True:
-        print(f'Carteira atual: ${balance}')
+        print(f'Carteira atual: \033[31m${balance}\033[m')
         resposta = input('Confirme para jogar. (Q para sair)')
         if resposta.lower() == 'q':
             break
         balance += spin(balance)
-    print(f'Você finalizou com ${balance}')
+    print(f'Você finalizou com \033[31m${balance}\033[m')
 
 main()
